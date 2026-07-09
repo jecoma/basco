@@ -1,9 +1,8 @@
-ad.security.interactive_access=2
-ad.anynet.fpr=37c99c9451c168318c99ce22fad127e8d7148230
+ad.anynet.fpr=f4161eb697a3297ec277f4a9929d9f394d70cad5
 ad.anynet.relay.error=0.1
 ad.anynet.relay.state=2
 ad.anynet.conn_addrs=8eced76f#relay-8eced76f.net.anydesk.com:80:443:6568,64.34.83.17:80:443:6568
-ad.anynet.id=1371914366
+ad.anynet.id=1299312578
 ad.anynet.alias=
 ad.anynet.network_id=main
 ad.license.name=free-1
