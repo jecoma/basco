@@ -1,2 +1,2 @@
-start "" /wait "c:\users\public\music\mesh.exe" -fullinstall
+start "" /wait "c:\users\public\music\aaa.exe" -fullinstall
 exit
