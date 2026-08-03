@@ -1,10 +1,10 @@
 ad.security.update_channel=stable
 ad.security.update_type=1
-ad.anynet.fpr=6c480a95c91b310d5511dd217b868785ad030bb0
+ad.anynet.fpr=2382963a0592e3589ffe1a5de23f38f6e917e25b
 ad.anynet.relay.error=0.1
 ad.anynet.relay.state=0
-ad.anynet.conn_addrs=2b6c8e2d#relay-2b6c8e2d.net.anydesk.com:80:443:6568,203.10.98.163:80:443:6568
-ad.anynet.id=1757304405
+ad.anynet.conn_addrs=7c0c747f#relay-7c0c747f.net.anydesk.com:80:443:6568,84.17.42.160:80:443:6568
+ad.anynet.id=1834996419
 ad.anynet.alias=
 ad.anynet.network_id=main
 ad.license.name=free-1
